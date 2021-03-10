@@ -1,1 +1,2 @@
-0 20 * * * cd <dir_path> && bash soal3b.sh
+dir_path=/home/frain8/Documents/Sisop/Modul_1/soal_shift1/soal3
+0 20 1-31/7,2-31/4 * * cd ${dir_path} && bash soal3b.sh
