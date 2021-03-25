@@ -15,7 +15,7 @@ for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
     if [ $name -lt 10 ]; then
         name="0$name"
     fi
-    echo "`wget -O $folder_path/Koleksi_$name.jpg https://loremflickr.com/320/240/kitten`"
+    echo "`wget -nv -O $folder_path/Koleksi_$name.jpg https://loremflickr.com/320/240/kitten`"
 
     # Write to log
     _date="$(date +"%A, %d %b %Y, %T WIB")" # Example: Kamis, 25 Mar 2021, 07:05:44 WIB
