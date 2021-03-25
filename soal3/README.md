@@ -3,7 +3,8 @@
 * Berikut ini adalah penjelasan dan penyelesaian dari kelima subsoal dari soal 3.
 
 # Subsoal a
-* File `Foto.log` disimpan di `/home/<username>/log/Foto.log`, dimana `username` adalah username dari local Linux environtment. 
+* Hasil gambar dan log disimpan dalam folder di direktori sesuai variabel `dir_path`.
+* Nama folder sama dengan waktu pembuatan folder dengan format `DD-MM-YY`.
 
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
@@ -43,6 +44,10 @@ dimana variabel `X` menandakan banyaknya gambar yang tersimpan
 
 
 # Subsoal b
+* Hasil gambar dan log disimpan sesuai variabel `dir_path` di script soal3a.sh
+* Berikan alamat dari direktori tempat script 3a berada pada variabel `curr_path` di script soal3b.sh.
+* Jika cron tidak jalan, coba berikan permission untuk soal3a.sh dan soal3b.sh dengan perintah `chmod +x <nama script>.sh`.
+
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
 1. Membuat crontab yang menjalankan soal3a.sh dengan interval:
@@ -55,11 +60,10 @@ Di soal ini, kami disuruh:
 
 ## Penyelesaian Soal
 ### Perintah 1
-* Buat dua baris cron command pada crontab yang menjalankan soal3a.sh.  
-* Berikut ini adalah command untuk penjadwalan cron yang akan dijalankan sehari sekali pada jam 8 malam:
-   * dari tanggal 1 & tujuh hari sekali: `0 22 1/7 * *`
-   * dari tanggal 2 & empat hari sekali: `0 22 2/4 * *`
+1. Ganti `<curr directory path>` di cron3b.tab sesuai alamat folder soal3.
+2. Tulis isi cron3b.tab di crontab.
+3. Di script soal3b.sh, jalankan script soal3a.sh bila tanggal saat ini memenuhi interval pada soal.
 
 ### Perintah 2
-1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di current directory.
+1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di direktori soal3a.sh.
 2. Ganti nama folder tersebut sesuai tanggal pembuatan folder dengan format `DD-MM-YY`.
