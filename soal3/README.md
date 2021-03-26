@@ -68,7 +68,7 @@ Di soal ini, kami disuruh:
 
 
 # Subsoal c
-* Variabel `dir_path` pada script ini harus sama dengan variabel `dir_path` pada soal 3a.
+* Variabel `dir_path` pada script ini sama dengan variabel `dir_path` pada soal 3a.
 
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
@@ -97,3 +97,17 @@ Di soal ini, kami disuruh:
 1. Kirim nama hewan yang akan didownload ke soal3a.sh dari soal3c.sh
 2. Berikan nama folder hasil download sesuai dengan nama hewan dari script soal3c.sh pada soal3a.sh
    * Format: `<Nama hewan>_DD-MM-YYYY`
+
+
+# Subsoal d
+## Penjelasan Soal
+Di soal ini, kami disuruh:
+1. Zip seluruh folder yang telah didownload kedalam `Koleksi.zip`
+2. Atur password dari zip diatas dengan format `MMDDYYYY`
+   * Contoh: "03032003"
+
+## Penyelesaian Soal
+# Perintah 1 & 2
+* Zip seluruh folder yang telah didownload dengan perintah:
+   > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
+   dimana tanggal berformat `MMDDYYY`.
