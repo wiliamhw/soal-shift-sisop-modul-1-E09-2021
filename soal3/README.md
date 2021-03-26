@@ -1,5 +1,10 @@
 # Info
 * Soal ini dikerjakan oleh 05111940000087 - William Handi Wijaya.  
+* Variabel `dir_path` diisi dengan alamat lengkap direktori `soal3`. 
+* Variabel `dir_path` terdapat di:
+  * cron3a.tab
+  * cron3b.tab
+  * soal3c.sh
 * Berikut ini adalah penjelasan dan penyelesaian dari kelima subsoal dari soal 3.
 
 # Subsoal a
@@ -66,7 +71,7 @@ Di soal ini, kami disuruh:
 
 
 # Subsoal c
-* Variabel `dir_path` pada script ini sama dengan variabel `dir_path` pada soal 3a.
+* Variabel `dir_path` pada script ini sama dengan variabel `dir_path` pada soal3a.sh.
 
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
@@ -108,8 +113,7 @@ Di soal ini, kami disuruh:
 ### Perintah 1 & 2
 * Zip seluruh folder yang telah didownload dengan perintah:
    > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
-   dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.
-
+   dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.  
 # Subsoal e
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
@@ -123,7 +127,7 @@ Di soal ini, kami disuruh:
    2. Hapus file zip
 
 ## Penyelesaian Soal
-* Isi variabel `<curr directory path>` di cron3e.tab sesuai dengan direktori tempat script dan zip berada.
+* Isi variabel `<dir_path>` di cron3e.tab sesuai dengan alamat lengkap direktori `soal3`
 * Jika cron tidak jalan, jalankan perintan `chmod +x soal3d.sh` di terminal.
 
 ### Perintah 1
@@ -131,8 +135,7 @@ Di soal ini, kami disuruh:
 2. Command cron untuk jam kedua adalah: `0 18 * * 1-5`
 
 ### Perintah 2
-* Command cron untuk perintah ini adalah: `0 7 * * 1-5 cd <curr directory path> && ./soal3d.sh`
+* Command cron untuk perintah ini adalah: `0 7 * * 1-5 cd <dir_path> && ./soal3d.sh`
 
 ### Perintah 3
-1. Inisialisasi variabel `DATE` yang menyimpan tanggal saat ini dengan format `MMDDYYY`
-2. Jalankan command cron berikut: `0 18 * * 1-5 <curr directory path> && unzip -P ``date +\%m\%d\%Y`` Koleksi.zip && rm Koleksi.zip`
+* Jalankan command cron berikut: `0 18 * * 1-5 cd <dir_path> && unzip -P ``date +\%m\%d\%Y`` Koleksi.zip && rm Koleksi.zip`

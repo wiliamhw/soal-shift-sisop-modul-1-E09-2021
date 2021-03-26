@@ -1,1 +1,1 @@
-0 20 * * * cd <curr directory path> && ./soal3b.sh
+0 20 * * * cd <dir_path> && ./soal3b.sh
