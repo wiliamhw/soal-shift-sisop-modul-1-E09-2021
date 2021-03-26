@@ -43,7 +43,6 @@ dimana variabel `X` menandakan banyaknya gambar yang tersimpan
 
 # Subsoal b
 * Hasil gambar dan log disimpan sesuai variabel `dir_path` di script soal3a.sh
-* Berikan alamat dari direktori tempat script 3a berada pada variabel `curr_path` di script soal3b.sh.
 * Jika cron tidak jalan, coba berikan permission untuk soal3a.sh dan soal3b.sh dengan perintah `chmod +x <nama script>.sh`.
 
 ## Penjelasan Soal
@@ -58,9 +57,8 @@ Di soal ini, kami disuruh:
 
 ## Penyelesaian Soal
 ### Perintah 1
-1. Ganti `<curr directory path>` di cron3b.tab sesuai alamat folder soal3.
-2. Tulis isi cron3b.tab di crontab.
-3. Di script soal3b.sh, jalankan script soal3a.sh bila tanggal saat ini memenuhi interval pada soal.
+1. Tulis isi cron3b.tab di crontab.
+2. Di script soal3b.sh, jalankan script soal3a.sh bila tanggal saat ini memenuhi interval pada soal.
 
 ### Perintah 2
 1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di direktori soal3a.sh.
@@ -107,7 +105,34 @@ Di soal ini, kami disuruh:
    * Contoh: "03032003"
 
 ## Penyelesaian Soal
-# Perintah 1 & 2
+### Perintah 1 & 2
 * Zip seluruh folder yang telah didownload dengan perintah:
    > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
-   dimana tanggal berformat `MMDDYYY`.
+   dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.
+
+# Subsoal e
+## Penjelasan Soal
+Di soal ini, kami disuruh:
+1. Membuat jadwal cron yang aktif pada:
+   * Hari Senin sampai Jumat pada jam:
+      1. 07.00
+      2. 18.00
+2. Pada jam nomor 1, jalankan script soal3d.sh
+3. Pada jam nomor 2:
+   1. Unzip file zip
+   2. Hapus file zip
+
+## Penyelesaian Soal
+* Isi variabel `<curr directory path>` di cron3e.tab sesuai dengan direktori tempat script dan zip berada.
+* Jika cron tidak jalan, jalankan perintan `chmod +x soal3d.sh` di terminal.
+
+### Perintah 1
+1. Command cron untuk jam pertama adalah: `0 7 * * 1-5`
+2. Command cron untuk jam kedua adalah: `0 18 * * 1-5`
+
+### Perintah 2
+* Command cron untuk perintah ini adalah: `0 7 * * 1-5 cd <curr directory path> && ./soal3d.sh`
+
+### Perintah 3
+1. Inisialisasi variabel `DATE` yang menyimpan tanggal saat ini dengan format `MMDDYYY`
+2. Jalankan command cron berikut: `0 18 * * 1-5 <curr directory path> && unzip -P ``date +\%m\%d\%Y`` Koleksi.zip && rm Koleksi.zip`
