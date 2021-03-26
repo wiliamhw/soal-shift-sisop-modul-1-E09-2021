@@ -81,16 +81,19 @@ Di soal ini, kami disuruh:
 
 ## Penyelesaian Soal
 ### Perintah 1
-* Download gambar kelinci dengan perintah `wget https://loremflickr.com/320/240/bunny`
+1. Download gambar kelinci dengan perintah `wget https://loremflickr.com/320/240/bunny`
+2. Masukan `source soal3c.sh` di script soal3a.sh
 
 ### Perintah 2
 1. Scan file dengan nama **Kucing** atau **Kelinci**.
    * Jika tidak ada, download gambar **Kucing**
 2. Ambil file terbaru dari file yang terscan.
 3. Tentukan nama hewan yang akan didownload berdasarkan nama hewan di file terbaru tersebut.
-   * Jika nama file terbaru sama dengan **Kucing**, maka file yang akan didownload adalah **Kelinci**.
-   * Begitupun sebaliknya.
-
+   * Jika tanggal file terbaru dibuat sama dengan tanggal saat ini, maka hewan yang akan didoawnload sama dengan hewan yang didownload di file terbaru tersebut.
+   * Selain itu, jika nama file terbaru sama dengan **Kucing**, maka file yang akan didownload adalah **Kelinci**.
+     * Begitupun sebaliknya.
+  
 ### Perintah 3
-1. Download hewan yang terpilih dari perintah 2
-2. Berikan nama folder hasil download sesuai dengan nama hewan
+1. Kirim nama hewan yang akan didownload ke soal3a.sh dari soal3c.sh
+2. Berikan nama folder hasil download sesuai dengan nama hewan dari script soal3c.sh pada soal3a.sh
+   * Format: `<Nama hewan>_DD-MM-YYYY`

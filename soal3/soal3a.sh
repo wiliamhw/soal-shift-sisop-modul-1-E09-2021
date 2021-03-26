@@ -1,8 +1,9 @@
 #!/bin/bash
+source soal3c.sh
 
-dir_path='/home/frain8/Documents/Sisop/Modul_1/soal_shift1/soal3'
-folder_path="$dir_path/$(date +"%d-%m-%Y")"
+folder_path="$dir_path/${currAnimal}_$(date +"%d-%m-%Y")"
 limit=23
+[[ $currAnimal = "Kucing" ]] && animal_link="kitten" || animal_link="bunny"
 
 # Create folder if folder_path not exist
 if [ ! -d $folder_path ]; then
@@ -15,7 +16,7 @@ for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
     if [ $name -lt 10 ]; then
         name="0$name"
     fi
-    echo "`wget -nv -O $folder_path/Koleksi_$name.jpg https://loremflickr.com/320/240/kitten`"
+    echo "`wget -O $folder_path/Koleksi_$name.jpg https://loremflickr.com/320/240/$animal_link`"
 
     # Write to log
     _date="$(date +"%A, %d %b %Y, %T WIB")" # Example: Kamis, 25 Mar 2021, 07:05:44 WIB
