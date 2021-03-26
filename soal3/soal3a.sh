@@ -10,11 +10,6 @@ if [ ! -d $folder_path ]; then
     echo "`mkdir $folder_path`"
 fi
 
-# Create folder if folder_path not exist
-if [ ! -d $folder_path ]; then
-    echo "`mkdir $folder_path`"
-fi
-
 for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
     # Download pictures
     name="$((++dc))"
