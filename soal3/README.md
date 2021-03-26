@@ -7,6 +7,8 @@
   * soal3c.sh
 * Berikut ini adalah penjelasan dan penyelesaian dari kelima subsoal dari soal 3.
 
+
+
 # Subsoal a
 * Hasil gambar dan log disimpan dalam folder di direktori sesuai variabel `dir_path`.
 * Nama folder sama dengan waktu pembuatan folder dengan format `DD-MM-YY`.
@@ -46,6 +48,7 @@ dimana variabel `X` menandakan banyaknya gambar yang tersimpan
       * Decrement counter yang menandakan banyaknya gambar yang tersimpan.
 
 
+
 # Subsoal b
 * Hasil gambar dan log disimpan sesuai variabel `dir_path` di script soal3a.sh
 * Jika cron tidak jalan, coba berikan permission untuk soal3a.sh dan soal3b.sh dengan perintah `chmod +x <nama script>.sh`.
@@ -68,6 +71,7 @@ Di soal ini, kami disuruh:
 ### Perintah 2
 1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di direktori soal3a.sh.
 2. Ganti nama folder tersebut sesuai tanggal pembuatan folder dengan format `DD-MM-YY`.
+
 
 
 # Subsoal c
@@ -102,6 +106,7 @@ Di soal ini, kami disuruh:
    * Format: `<Nama hewan>_DD-MM-YYYY`
 
 
+
 # Subsoal d
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
@@ -114,6 +119,8 @@ Di soal ini, kami disuruh:
 * Zip seluruh folder yang telah didownload dengan perintah:
    > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
    dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.  
+
+ 
 # Subsoal e
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
