@@ -1,5 +1,4 @@
 #!/bin/bash
-
 dir_path='/home/frain8/Documents/Sisop/Modul_1/soal_shift1/soal3'
 
 _newest_date=1000-12-30 # Variable to store newest date

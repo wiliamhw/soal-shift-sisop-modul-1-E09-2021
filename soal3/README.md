@@ -1,6 +1,13 @@
 # Info
 * Soal ini dikerjakan oleh 05111940000087 - William Handi Wijaya.  
+* Variabel `dir_path` diisi dengan alamat lengkap direktori `soal3`. 
+* Variabel `dir_path` terdapat di:
+  * cron3a.tab
+  * cron3b.tab
+  * soal3c.sh
 * Berikut ini adalah penjelasan dan penyelesaian dari kelima subsoal dari soal 3.
+
+
 
 # Subsoal a
 * Hasil gambar dan log disimpan dalam folder di direktori sesuai variabel `dir_path`.
@@ -41,9 +48,9 @@ dimana variabel `X` menandakan banyaknya gambar yang tersimpan
       * Decrement counter yang menandakan banyaknya gambar yang tersimpan.
 
 
+
 # Subsoal b
 * Hasil gambar dan log disimpan sesuai variabel `dir_path` di script soal3a.sh
-* Berikan alamat dari direktori tempat script 3a berada pada variabel `curr_path` di script soal3b.sh.
 * Jika cron tidak jalan, coba berikan permission untuk soal3a.sh dan soal3b.sh dengan perintah `chmod +x <nama script>.sh`.
 
 ## Penjelasan Soal
@@ -58,17 +65,17 @@ Di soal ini, kami disuruh:
 
 ## Penyelesaian Soal
 ### Perintah 1
-1. Ganti `<curr directory path>` di cron3b.tab sesuai alamat folder soal3.
-2. Tulis isi cron3b.tab di crontab.
-3. Di script soal3b.sh, jalankan script soal3a.sh bila tanggal saat ini memenuhi interval pada soal.
+1. Tulis isi cron3b.tab di crontab.
+2. Di script soal3b.sh, jalankan script soal3a.sh bila tanggal saat ini memenuhi interval pada soal.
 
 ### Perintah 2
 1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di direktori soal3a.sh.
 2. Ganti nama folder tersebut sesuai tanggal pembuatan folder dengan format `DD-MM-YY`.
 
 
+
 # Subsoal c
-* Variabel `dir_path` pada script ini harus sama dengan variabel `dir_path` pada soal 3a.
+* Variabel `dir_path` pada script ini sama dengan variabel `dir_path` pada soal3a.sh.
 
 ## Penjelasan Soal
 Di soal ini, kami disuruh:
@@ -97,3 +104,45 @@ Di soal ini, kami disuruh:
 1. Kirim nama hewan yang akan didownload ke soal3a.sh dari soal3c.sh
 2. Berikan nama folder hasil download sesuai dengan nama hewan dari script soal3c.sh pada soal3a.sh
    * Format: `<Nama hewan>_DD-MM-YYYY`
+
+
+
+# Subsoal d
+## Penjelasan Soal
+Di soal ini, kami disuruh:
+1. Zip seluruh folder yang telah didownload kedalam `Koleksi.zip`
+2. Atur password dari zip diatas dengan format `MMDDYYYY`
+   * Contoh: "03032003"
+
+## Penyelesaian Soal
+### Perintah 1 & 2
+* Zip seluruh folder yang telah didownload dengan perintah:
+   > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
+   dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.  
+
+ 
+# Subsoal e
+## Penjelasan Soal
+Di soal ini, kami disuruh:
+1. Membuat jadwal cron yang aktif pada:
+   * Hari Senin sampai Jumat pada jam:
+      1. 07.00
+      2. 18.00
+2. Pada jam nomor 1, jalankan script soal3d.sh
+3. Pada jam nomor 2:
+   1. Unzip file zip
+   2. Hapus file zip
+
+## Penyelesaian Soal
+* Isi variabel `<dir_path>` di cron3e.tab sesuai dengan alamat lengkap direktori `soal3`
+* Jika cron tidak jalan, jalankan perintan `chmod +x soal3d.sh` di terminal.
+
+### Perintah 1
+1. Command cron untuk jam pertama adalah: `0 7 * * 1-5`
+2. Command cron untuk jam kedua adalah: `0 18 * * 1-5`
+
+### Perintah 2
+* Command cron untuk perintah ini adalah: `0 7 * * 1-5 cd <dir_path> && ./soal3d.sh`
+
+### Perintah 3
+* Jalankan command cron berikut: `0 18 * * 1-5 cd <dir_path> && unzip -P ``date +\%m\%d\%Y`` Koleksi.zip && rm Koleksi.zip`
