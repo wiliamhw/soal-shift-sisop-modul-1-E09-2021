@@ -16,9 +16,7 @@ Di soal ini, kami disuruh:
   
 ## Penyelesaian Soal
 ### Perintah ke-1 & ke-4
-1. Sebanyak 23 kali, jalankan perintah  
-   > `wget -O Koleksi_XX.jpg https://loremflickr.com/320/240/kitten`  
-
+1. Sebanyak 23 kali, jalankan perintah `wget https://loremflickr.com/320/240/kitten`  
    dimana `XX` menandakan banyaknya gambar yang tersimpan dan dimulai dari 1.
 2. Increment counter yang menandakan banyaknya gambar yang tersimpan.
 
@@ -67,3 +65,35 @@ Di soal ini, kami disuruh:
 ### Perintah 2
 1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di direktori soal3a.sh.
 2. Ganti nama folder tersebut sesuai tanggal pembuatan folder dengan format `DD-MM-YY`.
+
+
+# Subsoal c
+* Variabel `dir_path` pada script ini harus sama dengan variabel `dir_path` pada soal 3a.
+
+## Penjelasan Soal
+Di soal ini, kami disuruh:
+1. Mendonwload gambar kelinci dari <https://loremflickr.com/320/240/bunny>
+2. Gambar kelinci dan gambar kucing didownload secara bergantian.
+   * Contoh: tanggal 30 kucing > tanggal 31 kucing > tanggal 1 kucing > ...
+3. Berikan nama hewan yang didownload pada nama folder
+   > Format: `<Nama hewan>_DD-MM-YYYY`  
+   > Contoh: Kucing_13-03-2023
+
+## Penyelesaian Soal
+### Perintah 1
+1. Download gambar kelinci dengan perintah `wget https://loremflickr.com/320/240/bunny`
+2. Masukan `source soal3c.sh` di script soal3a.sh
+
+### Perintah 2
+1. Scan file dengan nama **Kucing** atau **Kelinci**.
+   * Jika tidak ada, download gambar **Kucing**
+2. Ambil file terbaru dari file yang terscan.
+3. Tentukan nama hewan yang akan didownload berdasarkan nama hewan di file terbaru tersebut.
+   * Jika tanggal file terbaru dibuat sama dengan tanggal saat ini, maka hewan yang akan didoawnload sama dengan hewan yang didownload di file terbaru tersebut.
+   * Selain itu, jika nama file terbaru sama dengan **Kucing**, maka file yang akan didownload adalah **Kelinci**.
+     * Begitupun sebaliknya.
+  
+### Perintah 3
+1. Kirim nama hewan yang akan didownload ke soal3a.sh dari soal3c.sh
+2. Berikan nama folder hasil download sesuai dengan nama hewan dari script soal3c.sh pada soal3a.sh
+   * Format: `<Nama hewan>_DD-MM-YYYY`
