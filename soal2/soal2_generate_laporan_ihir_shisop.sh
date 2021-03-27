@@ -14,6 +14,7 @@ BEGIN {
     west = 0;
 }
 
+//a
 {
     rowid=$1;
     sales=$18;
@@ -27,6 +28,7 @@ BEGIN {
             rowidmax = rowid
             }
     }
+//b
     orderid = $2
     city = $10
     if (orderid != "Order ID" && city != "City")
@@ -37,6 +39,7 @@ BEGIN {
             custname[$7]
         }
     }
+//c
     segment = $8
     if (segment != "Segment")
     {
@@ -53,6 +56,7 @@ BEGIN {
             homeoffice++
         }
     }
+//d
     region = $13
     if (region != "Region")
     {
