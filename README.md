@@ -7,6 +7,14 @@
 * 05111940000212 - Fadhil Dimas Sucahyo
 <br><br>
 
+# Soal 1
+## Info
+* Soal ini dikerjakan oleh 05111940000074 - Nur Ahmad Khatim.  
+
+# Soal 2
+## Info
+* Soal ini dikerjakan oleh 05111940000212 - Fadhil Dimas Sucahyo.  
+
 # Soal 3 
 ## Info
 * Soal ini dikerjakan oleh 05111940000087 - William Handi Wijaya.  
@@ -16,7 +24,6 @@
   * cron3b.tab
   * soal3c.sh
 * Berikut ini adalah penjelasan dan penyelesaian dari kelima subsoal dari soal 3.
-<br><br>
 
 ## Subsoal a
 * Hasil gambar dan log disimpan dalam folder di direktori sesuai variabel `dir_path`.
@@ -46,7 +53,6 @@ Di soal ini, kami disuruh:
    2. Jika perintah idiff mengembalikan kata `PASS` (gambar saat ini == gambar sebelumnya)
       * Hapus gambar saat ini
       * Decrement counter yang menandakan banyaknya gambar yang tersimpan.
-<br><br>
 
 ## Subsoal b
 * Hasil gambar dan log disimpan sesuai variabel `dir_path` di script soal3a.sh
@@ -69,7 +75,6 @@ Di soal ini, kami disuruh:
 #### Perintah 2
 1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di direktori soal3a.sh.
 2. Ganti nama folder tersebut sesuai tanggal pembuatan folder dengan format `DD-MM-YY`.
-<br><br>
 
 ## Subsoal c
 * Variabel `dir_path` pada script ini sama dengan variabel `dir_path` pada soal3a.sh.
@@ -101,7 +106,6 @@ Di soal ini, kami disuruh:
 1. Kirim nama hewan yang akan didownload ke soal3a.sh dari soal3c.sh
 2. Berikan nama folder hasil download sesuai dengan nama hewan dari script soal3c.sh pada soal3a.sh
    * Format: `<Nama hewan>_DD-MM-YYYY`
-<br><br>
 
 ## Subsoal d
 ### Penjelasan Soal
@@ -116,7 +120,6 @@ Di soal ini, kami disuruh:
    > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
    dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.
    >
-<br>
 
 ## Subsoal e
 ### Penjelasan Soal
@@ -142,7 +145,6 @@ Di soal ini, kami disuruh:
 
 #### Perintah 3
 * Jalankan command cron berikut: `0 18 * * 1-5 cd <dir_path> && unzip -P ``date +\%m\%d\%Y`` Koleksi.zip && rm Koleksi.zip`
-<br><br>
 
 # Kendala
 Kendala dalam pengerjaan adalah sebagai berikut:  
