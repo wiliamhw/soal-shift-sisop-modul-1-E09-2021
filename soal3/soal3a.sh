@@ -1,19 +1,22 @@
 #!/bin/bash
+source soal3c.sh
 
-username='frain8' # Store the username of local Linux environtment
+folder_path="$dir_path/${currAnimal}_$(date +"%d-%m-%Y")"
 limit=23
+[[ $currAnimal = "Kucing" ]] && animal_link="kitten" || animal_link="bunny"
+
+# Create folder if folder_path not exist
+if [ ! -d $folder_path ]; then
+    echo "`mkdir $folder_path`"
+fi
 
 for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
-    # Download pictures
+    # Download pictures and write to log
     name="$((++dc))"
     if [ $name -lt 10 ]; then
         name="0$name"
     fi
-    echo "`wget -O Koleksi_$name.jpg https://loremflickr.com/320/240/kitten`"
-
-    # Write to log
-    _date="$(date +"%A, %d %b %Y, %T WIB")" # Example: Kamis, 25 Mar 2021, 07:05:44 WIB
-    echo "$_date, download gambar ke-$dc." >> /home/"$username"/log/Foto.log
+    echo "`wget -a $folder_path/Foto.log -O $folder_path/Koleksi_$name.jpg https://loremflickr.com/320/240/$animal_link`"
 
     # Compare current image with all of the previous downloaded images
     if [ $i -gt 1 ]; then # Start when at least 1 file is alredy downloaded
@@ -25,17 +28,12 @@ for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
             fi
 
             # Compare downloaded image with previous image
-            cmp="$(idiff "Koleksi_$jname.jpg" "Koleksi_$name.jpg")"
+            cmp="$(idiff "$folder_path/Koleksi_$jname.jpg" "$folder_path/Koleksi_$name.jpg")"
             cmp=$(awk -F " " '/PASS/ {print($1)}' <<< $cmp) # If current image is the same as previous image, this var will be empty
 
             # Delete image if the same image is already downloaded
             if [ -n "$cmp" ]; then
-                echo `rm Koleksi_"$name".jpg` # Delete image
-
-                # Write to log
-                _date="$(date +"%A, %d %b %Y, %T WIB")" # Example: Kamis, 25 Mar 2021, 07:05:44 WIB
-                echo "$_date, gambar ke-$dc dihapus karena adanya kesamaan dengan gambar ke-$temp." >> /home/"$username"/log/Foto.log
-
+                echo "`rm $folder_path/Koleksi_$name.jpg`" # Delete image
                 ((dc--)) # Decrement downloaded file counter
                 break
             fi

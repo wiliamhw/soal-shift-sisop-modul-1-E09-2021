@@ -1,0 +1,2 @@
+0 7 * * 1-5 cd <dir_path> && bash soal3d.sh
+0 18 * * 1-5 cd <dir_path> && unzip -P `date +\%m\%d\%Y` Koleksi.zip && rm Koleksi.zip

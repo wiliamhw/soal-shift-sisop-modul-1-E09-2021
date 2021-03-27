@@ -95,7 +95,6 @@ END {
         totaltranskecil = homeoffice
         segmentkecil = "Home Office"
     }
-
     print("Tipe segmen customer yang penjualannya paling sedikit adalah " segmentkecil " dengan " totaltranskecil " transaksi.\n")
     if (central < east && central < south && central < west)
     {
@@ -117,6 +116,5 @@ END {
         terkecil = west
         regionkecil = "West"
     }
-
     print("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah " regionkecil " dengan total keuntungan " terkecil)
     }' Laporan-TokoShiSop.tsv >> hasil.txt
