@@ -63,9 +63,8 @@ Di soal ini, kami disuruh:
 
 ### Penyelesaian Soal
 #### Perintah 1
-1. Tulis isi cron3b.tab di crontab.
-2. Di script soal3b.sh, jalankan script soal3a.sh bila tanggal saat ini memenuhi interval pada soal.
-
+* Tulis isi cron3b.tab di crontab.
+   
 #### Perintah 2
 1. Pindahkan output gambar dan log dari soal3a.sh ke suatu folder di direktori soal3a.sh.
 2. Ganti nama folder tersebut sesuai tanggal pembuatan folder dengan format `DD-MM-YY`.
