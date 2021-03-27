@@ -14,7 +14,6 @@ BEGIN {
     west = 0;
 }
 
-//a
 {
     rowid=$1;
     sales=$18;
@@ -28,7 +27,6 @@ BEGIN {
             rowidmax = rowid
             }
     }
-//b
     orderid = $2
     city = $10
     if (orderid != "Order ID" && city != "City")
@@ -39,7 +37,6 @@ BEGIN {
             custname[$7]
         }
     }
-//c
     segment = $8
     if (segment != "Segment")
     {
@@ -56,7 +53,6 @@ BEGIN {
             homeoffice++
         }
     }
-//d
     region = $13
     if (region != "Region")
     {
@@ -78,10 +74,12 @@ BEGIN {
         }
     }
 }
-END {print("Transaksi terakhir dengan profit percentage terbesar yaitu " orderid " dengan persentase " max "%.\n")
+END {
+    print("Transaksi terakhir dengan profit percentage terbesar yaitu " rowidmax " dengan persentase " max "%.\n")
     print("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: ")
     for (i in custname)
         print i
+
     if (consumer < corporate && consumer < homeoffice)
     {
         totaltranskecil = consumer
