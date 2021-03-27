@@ -34,11 +34,6 @@ for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
             # Delete image if the same image is already downloaded
             if [ -n "$cmp" ]; then
                 echo "`rm $folder_path/Koleksi_$name.jpg`" # Delete image
-
-                # Write to log
-                _date="$(date +"%A, %d %b %Y, %T WIB")" # Example: Kamis, 25 Mar 2021, 07:05:44 WIB
-                echo "$_date, gambar ke-$dc dihapus karena adanya kesamaan dengan gambar ke-$temp." >> "$folder_path/Foto.log"
-
                 ((dc--)) # Decrement downloaded file counter
                 break
             fi
