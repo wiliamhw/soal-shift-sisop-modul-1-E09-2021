@@ -11,16 +11,12 @@ if [ ! -d $folder_path ]; then
 fi
 
 for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
-    # Download pictures
+    # Download pictures and write to log
     name="$((++dc))"
     if [ $name -lt 10 ]; then
         name="0$name"
     fi
-    echo "`wget -O $folder_path/Koleksi_$name.jpg https://loremflickr.com/320/240/$animal_link`"
-
-    # Write to log
-    _date="$(date +"%A, %d %b %Y, %T WIB")" # Example: Kamis, 25 Mar 2021, 07:05:44 WIB
-    echo "$_date, download gambar ke-$dc." >> "$folder_path/Foto.log"
+    echo "`wget -a $folder_path/Foto.log -O $folder_path/Koleksi_$name.jpg https://loremflickr.com/320/240/$animal_link`"
 
     # Compare current image with all of the previous downloaded images
     if [ $i -gt 1 ]; then # Start when at least 1 file is alredy downloaded
@@ -38,11 +34,6 @@ for ((i=0, dc=0; i < $limit; i++)); do # dc = downloaded file counter
             # Delete image if the same image is already downloaded
             if [ -n "$cmp" ]; then
                 echo "`rm $folder_path/Koleksi_$name.jpg`" # Delete image
-
-                # Write to log
-                _date="$(date +"%A, %d %b %Y, %T WIB")" # Example: Kamis, 25 Mar 2021, 07:05:44 WIB
-                echo "$_date, gambar ke-$dc dihapus karena adanya kesamaan dengan gambar ke-$temp." >> "$folder_path/Foto.log"
-
                 ((dc--)) # Decrement downloaded file counter
                 break
             fi
