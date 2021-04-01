@@ -608,13 +608,13 @@ Di soal ini, kami disuruh:
 ## Subsoal d
 ### Penjelasan Soal
 Di soal ini, kami disuruh:
-1. Zip seluruh folder yang telah didownload kedalam `Koleksi.zip`
+1. Zip dan hapus seluruh folder yang telah didownload kedalam `Koleksi.zip`
 2. Atur password dari zip diatas dengan format `MMDDYYYY`
    * Contoh: "03032003"
 
 ### Penyelesaian Soal
 #### Perintah 1 & 2
-* Zip seluruh folder yang telah didownload dengan perintah:
+* Zip dan hapus seluruh folder yang telah didownload dengan perintah:
    > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
    dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.
    >
