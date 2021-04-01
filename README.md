@@ -581,7 +581,7 @@ Di soal ini, kami disuruh:
 Di soal ini, kami disuruh:
 1. Mendonwload gambar kelinci dari <https://loremflickr.com/320/240/bunny>
 2. Gambar kelinci dan gambar kucing didownload secara bergantian.
-   * Contoh: tanggal 30 kucing > tanggal 31 kucing > tanggal 1 kucing > ...
+   * Contoh: tanggal 30 kucing > tanggal 31 kelinci > tanggal 1 kucing > ...
 3. Berikan nama hewan yang didownload pada nama folder
    > Format: `<Nama hewan>_DD-MM-YYYY`  
    > Contoh: Kucing_13-03-2023
@@ -608,13 +608,13 @@ Di soal ini, kami disuruh:
 ## Subsoal d
 ### Penjelasan Soal
 Di soal ini, kami disuruh:
-1. Zip seluruh folder yang telah didownload kedalam `Koleksi.zip`
+1. Zip dan hapus seluruh folder yang telah didownload kedalam `Koleksi.zip`
 2. Atur password dari zip diatas dengan format `MMDDYYYY`
    * Contoh: "03032003"
 
 ### Penyelesaian Soal
 #### Perintah 1 & 2
-* Zip seluruh folder yang telah didownload dengan perintah:
+* Zip dan hapus seluruh folder yang telah didownload dengan perintah:
    > `zip -P <tanggal> -rm Koleksi.zip K[eu][lc]in[cg]*`
    dimana tanggal berformat `MMDDYYY` dan merupakan tanggal saat ini.
    >
