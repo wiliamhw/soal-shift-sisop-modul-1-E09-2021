@@ -1,120 +1,49 @@
 #!/bin/bash
 
-awk -F "\t" '
-BEGIN {
-    max = 0;
-    rowidmax =0;
-    orderid =0;
-    consumer = 0;
-    homeoffice = 0;
-    corporate =0;
-    central = 0;
-    east = 0;
-    south =0;
-    west = 0;
-}
+awk '
+BEGIN {FS="\t"}
 
 {
-    rowid=$1;
-    sales=$18;
-    profit=$21;
-    if(rowid != "Row ID" && sales != "Sales" && profit != "Profit")
-    {
-        costp = sales - profit
-        profitp = (profit / costp) * 100
-            if(max <= profitp) {
-            max = profitp
-            rowidmax = rowid
-            }
+    if (NR != 1){
+    profitp = ($21 / ($18-$21)) * 100
+    if(max <= profitp) {max = profitp; rowidmax = $1;}
     }
-    orderid = $2
-    city = $10
-    if (orderid != "Order ID" && city != "City")
+
+    if (NR != 1)
     {
-        year = substr(orderid, 4, 4)
-        if (year == 2017 && city == "Albuquerque")
-        {
-            custname[$7]
-        }
+        if ($2~2017 && $10 == "Albuquerque"){name[$7]}
     }
-    segment = $8
-    if (segment != "Segment")
+    if (NR != 1)
     {
-        if (segment == "Consumer")
-        {
-            consumer++
-        }
-        else if (segment == "Corporate")
-        {
-            corporate++
-        }
-        else if (segment == "Home Office")
-        {
-            homeoffice++
-        }
+        if ($8 == "Consumer") {consumer++}
+        else if ($8 == "Corporate") {corporate++}
+        else if ($8 == "Home Office") {homeoffice++}
     }
-    region = $13
-    if (region != "Region")
+    if (NR != 1)
     {
-        if (region == "Central")
-        {
-            central += $21
-        }
-        else if (region == "East")
-        {
-            east += $21
-        }
-        else if (region == "South")
-        {
-            south += $21
-        }
-        else if (region == "West")
-        {
-            west += $21
-        }
+        if ($13 == "Central"){central += $21}
+        else if ($13 == "East"){east += $21}
+        else if ($13 == "South"){south += $21}
+        else if ($13 == "West"){west += $21}
     }
 }
-END {
+
+END{
     print("Transaksi terakhir dengan profit percentage terbesar yaitu " rowidmax " dengan persentase " max "%.\n")
     print("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: ")
-    for (i in custname)
+    for (i in name)
         print i
 
-    if (consumer < corporate && consumer < homeoffice)
-    {
-        totaltranskecil = consumer
-        segmentkecil = "Consumer"
-    }
-    else if (corporate < consumer && corporate < homeoffice)
-    {
-        totaltranskecil = corporate
-        segmentkecil = "Corporate"
-    }
-    else if (homeoffice < consumer && homeoffice < corporate)
-    {
-        totaltranskecil = homeoffice
-        segmentkecil = "Home Office"
-    }
-    print("Tipe segmen customer yang penjualannya paling sedikit adalah " segmentkecil " dengan " totaltranskecil " transaksi.\n")
-    if (central < east && central < south && central < west)
-    {
-        terkecil = central
-        regionkecil = "Central"
-    }
-    else if (east < central && east < south && east < west)
-    {
-        terkecil = east
-        regionkecil = "East"
-    }
-    else if (south < central && south < east && south < west)
-    {
-        terkecil = south
-        regionkecil = "South"
-    }
-    else if (west < central && west < east && west < south)
-    {
-        terkecil = west
-        regionkecil = "West"
-    }
+    if (consumer < corporate && consumer < homeoffice) {tottrans = consumer; segmin = "Consumer";}
+    else if (corporate < consumer && corporate < homeoffice) {tottrans = corporate; segmin = "Corporate";}
+    else if (homeoffice < consumer && homeoffice < corporate) {tottrans = homeoffice; segmin = "Home Office";}
+
+    print("Tipe segmen customer yang penjualannya paling sedikit adalah " segmin " dengan " tottrans " transaksi.\n")
+
+    if (central < east && central < south && central < west) {terkecil = central; regionkecil = "Central";}
+    else if (east < central && east < south && east < west) {terkecil = east; regionkecil = "East";}
+    else if (south < central && south < east && south < west) {terkecil = south; regionkecil = "South";}
+    else if (west < central && west < east && west < south) {terkecil = west; regionkecil = "West";}
+
     print("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah " regionkecil " dengan total keuntungan " terkecil)
     }' Laporan-TokoShiSop.tsv >> hasil.txt
