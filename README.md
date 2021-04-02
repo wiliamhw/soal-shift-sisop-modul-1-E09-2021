@@ -310,10 +310,11 @@ xlg,0,4
 ## Info
 - Soal ini dikerjakan oleh 05111940000212 - Fadhil Dimas Sucahyo
 - Soal ini diminta untuk mendapatkan beberapa kesimpulan dari data penjualan "Laporan-TokoShiSop.tsv"
-- Pada awal kode sudah di BEGIN awk dengan Field Seperator dan semua variabel yang dibutuhkan di semua soal
+- Pada awal kode sudah di BEGIN awk dengan Field Seperator
 - Semua Fungsi print dimasukkan semua menjadi satu group dibawah pada END dengan input "Laporan-TokoShiSop.tsv" dan output "hasil.txt"
 
 ## Penyelesain
+
 ### Subsoal a
 
 Pada subsoal ini diminta untuk mencari ID Transaksi yang memiliki Profit Percentage terbesar di data
@@ -321,28 +322,15 @@ Pada subsoal ini diminta untuk mencari ID Transaksi yang memiliki Profit Percent
 Untuk no 1 ini kami mendeklarasikan action untuk menghitung profit percentage dan menentukan apakah profit percentage sebuah baris melebihi profit percentage terbesar yang pernah tercatat.
 
 ```
-{
-    rowid=$1;
-    sales=$18;
-    profit=$21;
-    if(rowid != "Row ID" && sales != "Sales" && profit != "Profit")
-    {
-        costp = sales - profit
-        profitp = (profit / costp) * 100
-            if(max <= profitp) {
-            max = profitp
-            rowidmax = rowid
-            orderid=$2
-            }
+    if (NR != 1){
+    profitp = ($21 / ($18-$21)) * 100
+    if(max <= profitp) {max = profitp; rowidmax = $1;}
     }
 ```
 
-pada syntax `if(rowid != "Row ID" && sales != "Sales" && profit != "Profit")` berfungsi agar tidak membaca row pertama yang berisi judul baris.
+pada syntax `if (NR != 1)` berfungsi agar tidak membaca row pertama yang berisi judul baris.
 
-pada syntax `if(max <= profitp) {
-            max = profitp
-            rowidmax = rowid
-            }` berfungsi untuk mengupdate data profit percentage dan Row ID-nya.
+pada syntax `if(max <= profitp) {max = profitp; rowidmax = $1;}` berfungsi untuk mengupdate data profit percentage dan Row ID-nya.
 
 pada bagian END bisa diprint
 ```
@@ -358,28 +346,22 @@ Transaksi terakhir dengan profit percentage terbesar yaitu 9952 dengan persentas
 
 Pada soal ini diminta untuk mencetakkan data costumer yang melakukan transaksi pada tahun 2017 di Albuquerque.
 
-Pada fungsi ini dibutuhkan variabel `orderid` dimana terdapat tahun dari transaksi dan `city` untuk kota transaksi
+Pada fungsi ini akan mengambil row `$2` yaitu Order ID dimana terdapat tahun dari transaksi dan `$10` yaitu kota transaksi
 ```
-    orderid = $2
-    city = $10
-    if (orderid != "Order ID" && city != "City")
+    if (NR != 1)
     {
-        year = substr(orderid, 4, 4)
-        if (year == 2017 && city == "Albuquerque")
-        {
-            custname[$7]
-        }
+        if ($2~2017 && $10 == "Albuquerque"){name[$7]}
     }
 ```
 
-Pada syntax `year = substr(orderid, 4, 4)` berfungsi untuk mengambil substring dari data `orderid` yaitu dari karakter ke 4 dengan panjang 4 karakter berfungsi untuk mengambil tahun transaksi
+Pada syntax `$2~2017` berfungsi untuk menentukan apakah
 
-Pada syntax `custname[$7]` berfungsi untuk membuat array untuk menampung nama-nama customer yang memenuhi syarat.
+Pada syntax `name[$7]` berfungsi untuk membuat array untuk menampung nama-nama customer yang memenuhi syarat.
 
-lalu pada group END kami print nama-nama yang tersimpan dalam array `custname[$7]`
+lalu pada group END kami print nama-nama yang tersimpan dalam array `name`
 ```
 print("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: ")
-    for (i in custname)
+    for (i in name)
         print i
 ```
 Hasil output adalah sebagai berikut:
@@ -395,42 +377,20 @@ David Wiener
 
 Pada Subsoal ini diminta untuk mencetakkan segment customer yang memiliki jumlah transaksi yang paling sedikit dan jumlah transaksi segment tersebut.
 
-Pada awal kode sudah dideklarasikan semua variabel untuk segment yaitu `consumer` ,`homeoffice` ,dan `corporate` untuk menampung jumlah transaksi pada segment-segment tersebut. Untuk menghitung jumlah transaksi masing-masing segment kami membuat kode seperti berikut
+untuk menjumlahkan jumlah tiap segment terdapat variabel `consumer` ,`homeoffice` ,dan `corporate` untuk menampung jumlah transaksi pada segment-segment tersebut. Untuk menghitung jumlah transaksi masing-masing segment kami membuat kode seperti berikut
 ```
-segment = $8
-    if (segment != "Segment")
+if (NR != 1)
     {
-        if (segment == "Consumer")
-        {
-            consumer++
-        }
-        else if (segment == "Corporate")
-        {
-            corporate++
-        }
-        else if (segment == "Home Office")
-        {
-            homeoffice++
-        }
+        if ($8 == "Consumer") {consumer++}
+        else if ($8 == "Corporate") {corporate++}
+        else if ($8 == "Home Office") {homeoffice++}
     }
 ```
 Setelah dihitung semua transaksi masing-masing segment kami bisa menentukan segment apa yang memiliki transaksi paling sedikit yaitu pada grup END terdapat fungsi
 ```
-if (consumer < corporate && consumer < homeoffice)
-    {
-        totaltranskecil = consumer
-        segmentkecil = "Consumer"
-    }
-    else if (corporate < consumer && corporate < homeoffice)
-    {
-        totaltranskecil = corporate
-        segmentkecil = "Corporate"
-    }
-    else if (homeoffice < consumer && homeoffice < corporate)
-    {
-        totaltranskecil = homeoffice
-        segmentkecil = "Home Office"
-    }
+if (consumer < corporate && consumer < homeoffice) {tottrans = consumer; segmin = "Consumer";}
+    else if (corporate < consumer && corporate < homeoffice) {tottrans = corporate; segmin = "Corporate";}
+    else if (homeoffice < consumer && homeoffice < corporate) {tottrans = homeoffice; segmin = "Home Office";}
 ```
 Setelah diketahui segment yang memiliki total transaksi terkecil bisa dicetak menggunakan kode sebagai berikut
 ```
@@ -444,49 +404,24 @@ Tipe segmen customer yang penjualannya paling sedikit adalah Home Office dengan 
 ### Subsoal D
 Pada soal ini diminta untuk mencari wilayah bagian (region) yang memiliki total keuntungan (profit) paling sedikit dan total keuntungan wilayah tersebut.
 
-Pada group awal sudah di deklarasikan variabel `central`, `east`, `south`, dan `west` untuk menjumlah semua total keuntungan (profit) setiap region. Kode untuk menjumlahkan semua total keuntungan setiap region adalah sebagai berikut
+untuk menjumlahkan jumlah keuntungan tiap region terdapat variabel `central`, `east`, `south`, dan `west` untuk menjumlah semua total keuntungan (profit) setiap region. Kode untuk menjumlahkan semua total keuntungan setiap region adalah sebagai berikut
 ```
- segment = $8
-    if (segment != "Segment")
+if (NR != 1)
     {
-        if (segment == "Consumer")
-        {
-            consumer++
-        }
-        else if (segment == "Corporate")
-        {
-            corporate++
-        }
-        else if (segment == "Home Office")
-        {
-            homeoffice++
-        }
+        if ($13 == "Central"){central += $21}
+        else if ($13 == "East"){east += $21}
+        else if ($13 == "South"){south += $21}
+        else if ($13 == "West"){west += $21}
     }
 ```
 Setelah diketahui semua total keuntungan (profit) setiap region, bisa ditentukan dengan kode pada group END sebagai berikut
 
 ```
-print("Tipe segmen customer yang penjualannya paling sedikit adalah " segmentkecil " dengan " totaltranskecil " transaksi.\n")
-    if (central < east && central < south && central < west)
-    {
-        terkecil = central
-        regionkecil = "Central"
-    }
-    else if (east < central && east < south && east < west)
-    {
-        terkecil = east
-        regionkecil = "East"
-    }
-    else if (south < central && south < east && south < west)
-    {
-        terkecil = south
-        regionkecil = "South"
-    }
-    else if (west < central && west < east && west < south)
-    {
-        terkecil = west
-        regionkecil = "West"
-    }
+if (central < east && central < south && central < west) {terkecil = central; regionkecil = "Central";}
+    else if (east < central && east < south && east < west) {terkecil = east; regionkecil = "East";}
+    else if (south < central && south < east && south < west) {terkecil = south; regionkecil = "South";}
+    else if (west < central && west < east && west < south) {terkecil = west; regionkecil = "West";}
+
 ```
 Setelah diketahui region mana yang memiliki total keuntungan (profit) paling sedikit, bisa dicetak dengan cara sebagai berikut
 ```
